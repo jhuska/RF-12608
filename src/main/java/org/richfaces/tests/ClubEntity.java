@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity(name = "Club")
@@ -20,8 +21,10 @@ public class ClubEntity {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "ClubMembers", joinColumns = { @JoinColumn(name = "clubId") }, inverseJoinColumns = { @JoinColumn(name = "memberId") })
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "ClubMembers", 
+    	joinColumns = { @JoinColumn(name = "clubId", referencedColumnName="clubId") }, 
+    	inverseJoinColumns = { @JoinColumn(name = "memberId", referencedColumnName="memberId") })
     private List<MemberEntity> members;
 
     public String getName() {
