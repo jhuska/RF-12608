@@ -45,6 +45,7 @@
                 tools for your project, such as Arquillian for testing) and the jboss-javaee-6.0-with-hibernate 
                 stack you can read this as the JBoss stack of the Java EE 6 APIs, with extras 
                 from the Hibernate family of projects) -->
+              
             <dependency>
                 <groupId>org.jboss.bom</groupId>
                 <artifactId>jboss-javaee-6.0-with-tools</artifactId>
@@ -68,6 +69,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            
+            <dependency>
+				<groupId>org.jboss.seam</groupId>
+				<artifactId>seam-bom</artifactId>
+				<version>3.1.0.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -197,6 +206,28 @@
             <scope>test</scope>
         </dependency>
 
+		<dependency>
+			<groupId>org.jboss.solder</groupId>
+			<artifactId>solder-api</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.solder</groupId>
+			<artifactId>solder-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.faces</groupId>
+			<artifactId>seam-faces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam.international</groupId>
+			<artifactId>seam-international</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
     </dependencies>
 
     <build>

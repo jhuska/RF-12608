@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -12,16 +13,57 @@
 		<ui:define name="title">RF-12608</ui:define>
 
 		<ui:define name="body">
-			<h:form>
-				<rich:pickList value="#{bean.selectedMembers}"
-					sourceCaption="Available members" targetCaption="Selected members"
-					listWidth="165px" listHeight="100px">
-					<f:selectItems value="#{bean.members}" var="member"
-						itemValue="#{member}" itemLabel="#{member.name}"
-						collectionType="java.util.ArrayList" />
-				</rich:pickList>
+			<h:form id="alphaForm">
+				<rich:messages />
+				
+				<rich:panel style="width: 500px">
+					<f:facet name="header">
+						<h:outputText value="Alpha" />
+					</f:facet>
+					
+					<rich:pickList value="#{bean.alphaClub.members}"
+							sourceCaption="Available members" targetCaption="Selected members"
+							listWidth="165px" listHeight="100px">
+							
+						<f:selectItems value="#{bean.allMembers}" var="member"
+							itemValue="#{member}" itemLabel="#{member.name}" />
+	
+						<f:converter converterId="memberConverter" />
+					</rich:pickList>
+					
+					<div>
+						<a4j:commandButton value="Save" action="#{bean.save}"
+							execute="alphaForm" render="alphaForm" />
+					</div>
+				</rich:panel>
+			</h:form>
+			<h:form id="betaForm">
+				<rich:messages />
+				
+				<rich:panel style="width: 500px">
+					<f:facet name="header">
+							<h:outputText value="Beta" />
+						</f:facet>
+					
+					<rich:pickList value="#{bean.betaClub.members}" header="Beta"
+							collectionType="java.util.ArrayList"
+							sourceCaption="Available members" targetCaption="Selected members"
+							listWidth="165px" listHeight="100px">
+							
+						<f:selectItems value="#{bean.allMembers}" var="member"
+							itemValue="#{member}" itemLabel="#{member.name}" />
+	
+						<f:converter converterId="memberConverter" />
+					</rich:pickList>
+					
+					<div>
+						<a4j:commandButton value="Save" action="#{bean.save}"
+							execute="betaForm" render="betaForm" />
+					</div>
+				</rich:panel>
 			</h:form>
 		</ui:define>
 	</ui:composition>
 </body>
+
 </html>

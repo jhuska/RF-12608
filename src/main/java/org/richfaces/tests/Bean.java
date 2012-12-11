@@ -1,40 +1,59 @@
 package org.richfaces.tests;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
-@ManagedBean
-@RequestScoped
-public class Bean {
+import org.jboss.solder.logging.Logger;
 
-    @Inject
-    private ClubEntiyManager clubManager;
+@Named
+@SessionScoped
+public class Bean implements Serializable {
+	private static final long serialVersionUID = -5595424783844894530L;
 
-    private List<MemberEntity> selectedMembers;
-
-    public List<MemberEntity> getMembers() {
-        ClubEntity club = clubManager.getClub();
-        List<MemberEntity> members = club.getMembers();
-        System.out.println(members.getClass());
-        return members;
+	@Inject Logger log;
+	
+    @Inject private ClubEntityManager clubManager;
+    
+    private ClubEntity clubAlpha;
+    private ClubEntity clubBeta;
+    
+    public void save() {
+    	//log.info("Saving selected members");
     }
 
-    public List<MemberEntity> getSelectedMembers() {
-        return selectedMembers;
+    public ClubEntity getAlphaClub() {
+    	//log.info("Getting club Alpha");
+    	
+    	if (clubAlpha == null) {
+    		clubAlpha = clubManager.getAlphaClub();
+    	}
+    	
+    	return clubAlpha;
+    }
+    
+    public ClubEntity getBetaClub() {
+    	//log.info("Getting club Beta");
+    	
+    	if (clubBeta == null) {
+    		clubBeta = clubManager.getBetaClub();
+    	}
+    	
+    	return clubBeta;
+    }
+    
+    public List<MemberEntity> getAllMembers() {
+        return clubManager.getAllMembers();
     }
 
-    public void setSelectedMembers(List<MemberEntity> selectedMembers) {
-        this.selectedMembers = selectedMembers;
-    }
-
-    public ClubEntiyManager getClubManager() {
+    public ClubEntityManager getClubManager() {
         return clubManager;
     }
 
-    public void setClubManager(ClubEntiyManager clubManager) {
+    public void setClubManager(ClubEntityManager clubManager) {
         this.clubManager = clubManager;
     }
 }
