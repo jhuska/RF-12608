@@ -1,12 +1,14 @@
 package org.richfaces.tests;
 
+import java.util.List;
+
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
 @Stateful
-public class ClubEntiyManager {
+public class ClubEntityManager {
 
     @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager em;
@@ -19,7 +21,16 @@ public class ClubEntiyManager {
         this.em = em;
     }
 
-    public ClubEntity getClub() {
-        return em.getReference(ClubEntity.class, 1l);
+    public ClubEntity getAlphaClub() {
+    	return em.find(ClubEntity.class, 1l);
+    }
+    
+    public ClubEntity getBetaClub() {
+    	return em.find(ClubEntity.class, 2l);
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<MemberEntity> getAllMembers() {
+    	return em.createQuery("SELECT m from Member m").getResultList();
     }
 }

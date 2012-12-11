@@ -14,15 +14,11 @@ public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long memberId;
+    private Long memberId;
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "ClubMembers", 
-    joinColumns = { @JoinColumn(name = "memberId") }, 
-    inverseJoinColumns = { @JoinColumn(name = "clubId") })
-    private ClubEntity club;
+    //private ClubEntity club;
 
     public MemberEntity() {
     }
@@ -34,7 +30,7 @@ public class MemberEntity {
     public void setName(String name) {
         this.name = name;
     }
-
+/*
     public ClubEntity getClub() {
         return club;
     }
@@ -42,8 +38,8 @@ public class MemberEntity {
     public void setClub(ClubEntity club) {
         this.club = club;
     }
-
-    public long getMemberId() {
+*/
+    public Long getMemberId() {
         return memberId;
     }
 
@@ -53,6 +49,38 @@ public class MemberEntity {
     
     @Override
     public String toString() {
-        return name + " " + club;
+        return memberId + " " + name;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((memberId == null) ? 0 : memberId.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MemberEntity other = (MemberEntity) obj;
+		if (memberId == null) {
+			if (other.memberId != null)
+				return false;
+		} else if (!memberId.equals(other.memberId))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
 }
