@@ -50,4 +50,9 @@ public class MemberEntity {
     public void setMemberId(long memberId) {
         this.memberId = memberId;
     }
+    
+    @Override
+    public String toString() {
+        return name + " " + club;
+    }
 }

@@ -17,7 +17,9 @@ public class Bean {
 
     public List<MemberEntity> getMembers() {
         ClubEntity club = clubManager.getClub();
-        return club.getMembers();
+        List<MemberEntity> members = club.getMembers();
+        System.out.println(members.getClass());
+        return members;
     }
 
     public List<MemberEntity> getSelectedMembers() {

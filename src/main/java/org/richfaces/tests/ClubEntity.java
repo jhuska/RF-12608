@@ -21,9 +21,7 @@ public class ClubEntity {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "ClubMembers", 
-    joinColumns = { @JoinColumn(name = "clubId") }, 
-    inverseJoinColumns = { @JoinColumn(name = "memberId") })
+    @JoinTable(name = "ClubMembers", joinColumns = { @JoinColumn(name = "clubId") }, inverseJoinColumns = { @JoinColumn(name = "memberId") })
     private List<MemberEntity> members;
 
     public String getName() {
@@ -48,5 +46,10 @@ public class ClubEntity {
 
     public void setClubId(long clubId) {
         this.clubId = clubId;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

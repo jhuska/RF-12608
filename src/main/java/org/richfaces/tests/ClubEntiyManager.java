@@ -1,13 +1,14 @@
 package org.richfaces.tests;
 
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
-@Stateless
+@Stateful
 public class ClubEntiyManager {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager em;
 
     public EntityManager getEm() {
@@ -17,8 +18,8 @@ public class ClubEntiyManager {
     public void setEm(EntityManager em) {
         this.em = em;
     }
-    
+
     public ClubEntity getClub() {
-        return (ClubEntity) em.createQuery("SELECT x FROM Club x").getSingleResult();
+        return em.getReference(ClubEntity.class, 1l);
     }
 }

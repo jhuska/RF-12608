@@ -64,7 +64,7 @@
             <dependency>
                 <groupId>org.richfaces</groupId>
                 <artifactId>richfaces-bom</artifactId>
-                <version>4.3.0.20121024-M2</version>
+                <version>4.2.3.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -167,18 +167,6 @@
             <scope>provided</scope>
         </dependency>
         
-<!--          The rewrite library allows us to do url rewriting - used here for rewriting mobile devices to mobile specific views -->
-<!--         <dependency> -->
-<!--             <groupId>org.ocpsoft.rewrite</groupId> -->
-<!--             <artifactId>rewrite-servlet</artifactId> -->
-<!--         </dependency> -->
-
-<!--         The cdi integration allows for CDI injection into the rewrite configuration class -->
-<!--         <dependency> -->
-<!--             <groupId>org.ocpsoft.rewrite</groupId> -->
-<!--             <artifactId>rewrite-integration-cdi</artifactId> -->
-<!--         </dependency> -->
-
         <!-- Annotation processor that raising compilation errors whenever 
             constraint annotations are incorrectly used. -->
         <dependency>
